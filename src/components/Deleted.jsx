@@ -10,14 +10,12 @@ const Deleted = () => {
   return (
     <div className='Deleted-box'>
       <h1 
-      // style={{marginTop: "5px", marginBottom: "20px"}}
       >Deleted Tasks</h1>
       {
          deleted.map((item,index)=>{
           return <DeletedItems key={item.taskId} task={item} index={index}/>
          })
       }
-      {/* <Try/> */}
     </div>
   )
 }
