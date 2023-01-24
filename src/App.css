@@ -15,12 +15,13 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  background-image: linear-gradient(to right, rgb(31, 52, 77) ,  rgb(47, 117, 202));
-  /* background-color: rgb(31, 52, 77); */
+  background: linear-gradient(150deg, rgb(31, 52, 77), rgb(47, 117, 202) 100%);
   color: aliceblue;
   padding: 0px 20px 0px 20px;
   position: sticky;
   top: 0px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;  
+  z-index: 1000;
  }
 
  #header h2:active{
@@ -28,13 +29,13 @@
  }
 
 #taskBoard{
-  height: 90%;
+  min-height: 90%;
   width: 100%;
   max-width: 1600px;
   display: flex;
   flex-direction: column;
   margin: auto;
-  /* background-color: #b0dceb; */
+  background-color: aliceblue;
 }
 
 .taskBoard-button{
@@ -51,7 +52,7 @@
 }
 
 .taskBoard-button:hover{
-  background-color: #047398;
+  background-color: #15a581;
 }
 .taskBoard-button:active{
   background-color: #a5ddef;
@@ -68,9 +69,11 @@
 .task-fliter{
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
-  padding: 20px 20px 20px 20px;
-  background-color: #a9e0f8;
+  padding: 20px 10px 20px 10px;
+  /* background-color: #a9e0f8; */
+  background: linear-gradient(150deg, #39ef97, #0316a9 100%);
   width: 97%;
   margin: auto;
   border-radius: 20px;
@@ -80,6 +83,7 @@
 .task-fliter-input{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   flex: 1;
   align-items: center;
   justify-content: space-around;
@@ -92,10 +96,13 @@
 } */
 
 .task{
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  /* flex-direction: row; */
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  column-gap: 40px;
+  row-gap: 50px;
   flex: 1;
-  /* align-items: center; */
+  padding-bottom: 20px;
   justify-content: space-between;
   margin: 40px 20px 0px 20px;
 }
@@ -105,22 +112,24 @@
   flex-direction: column;
   justify-content:flex-start;
   align-items: center;
-  width: 30%;
-  border: 1px solid rgb(163, 162, 162);
   border-radius: 5px;
   height: 400px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  background-color: #eaebec;
+  border-radius: 15px 15px 5px 5px;
 }
 
 .List-body-heading{
-  background-color: #008CBA;
+  background-image: linear-gradient(to right, #008CBA ,  rgb(11, 70, 141));;
+  border-radius: 15px 15px 0px 0px;
   width: 100%;
-  color: white;
+  color: rgb(230, 239, 244);
   display: flex;
-  justify-content:center ;
   align-items: center;
-  height: 40px;
-  font-size: large;
+  height: 50px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding-left: 15px;
 }
 .List-body-items{
   flex: 1;
@@ -139,11 +148,13 @@
   justify-content: center;
   width: 97%;
   padding: 5px;
-  margin: 2px 0px 5px 0px;
+  margin: 5px 0px 2px 0px;
   transition: 0.1s;
+  font-size: 1rem;
   /* border-bottom: 1px solid rgb(185, 184, 184); */
-  background-color: rgb(238, 241, 249);
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  background-color: rgb(252, 252, 252);
+  border-radius: 20px 2px 20px 2px;
+  box-shadow: rgba(50, 50, 93, 0.7) 0px 2px 5px -1px, rgba(0, 0, 0) 0px 1px 3px -1px;
 }
 
 .drag{
@@ -164,11 +175,13 @@
   background-color: rgb(250, 143, 143);
 }
 
-.List-items p{
+.items-info{
   flex: 1;
   display: flex;
-  justify-content:center ;
-  align-items: center;
+  flex-direction: column;
+  justify-content:flex-start ;
+  padding-left: 10px;
+  /* align-items: center; */
 }
 
 .Deleted-items{
@@ -177,12 +190,9 @@
   height: 50px;
   justify-content:space-between;
   align-items: center;
-  /* border: 1px solid gray; */
   padding: 5px;
   margin-bottom: 20px;
-  /* background-color: gainsboro; */
   background: #f2f2f2;
-  /* overflow: hidden; */
   border-radius: 2px;
   cursor: pointer;
   box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;}
@@ -190,7 +200,6 @@
 .Deleted-items span{
   width: 20%;
   margin-left: 10px;
-  /* background-color: orange; */
 }
 
 .Deleted-box{

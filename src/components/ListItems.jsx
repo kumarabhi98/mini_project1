@@ -12,6 +12,8 @@ import Select from '@mui/material/Select';
 import useTaskStore from '../store/appStore';
 import { Draggable } from 'react-beautiful-dnd';
 import EditIcon from '@mui/icons-material/Edit';
+import { taskStatus } from '../utils/OtherUtils';
+import { getDays } from '../utils/HelperFunctions';
 
 
 const style = {
@@ -102,24 +104,22 @@ const ListItems = (props) => {
         setTimeout(() => { props.setOpen(false) }, 2000);
     }
 
-    function getTime() {
-        let newDate = new Date();
-        let date = parseInt(props.task.date);
-        let diff = newDate.getTime() - date;
-        let dd = Math.floor(diff / 1000 / 60 / 60 / 24);
-        return dd;
-    }
-
     return (
         <Draggable draggableId={`${props.task.taskId}`} index={props.index}>
             {(provided, snapshot) => (
                 <div
-                    className={`List-items ${snapshot.isDragging ? "drag" : ""} ${ (props.task.status!=="Completed" && getTime()>=parseInt(props.task.story_points)) ?"due-task" : ""}`}
+                    className={`List-items ${snapshot.isDragging ? "drag" : ""} ${(props.task.status !== "Completed" && getDays(props.task.date) >= parseInt(props.task.story_points)) ? "due-task" : ""}`}
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-                    <p>{`${props.task.name_}`}</p>
+                    <p className='items-info' style={{fontSize:"1.3rem", textTransform:"capitalize"}}>
+                        {`${props.task.name_}`}
+                        <p style={{fontSize:"small", marginTop:"5px"}}>
+                            <p>{`Assigned by: ${props.task.assignee}`}</p>
+                            <p>{`Priority: ${props.task.priority}`}</p>
+                        </p>
+                    </p>
                     <EditIcon sx={{ mr: 1, ml: 1, color: "rgb(31, 52, 77)" }} onClick={handleUpdateOpen} />
                     <DeleteIcon sx={{ mr: 1, ml: 1, color: "rgb(31, 52, 77)" }} onClick={handleOpen} />
                     <Modal
@@ -155,9 +155,9 @@ const ListItems = (props) => {
                         <Box sx={style2}>
                             <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
                                 <Typography id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Task name : </Typography>
-                                <TextField style={{flex:"1"}} error={nameError}  label="Name" id="fullWidth" size='small' value={name} onChange={handleChangeName} />
+                                <TextField style={{ flex: "1" }} error={nameError} label="Name" id="fullWidth" size='small' value={name} onChange={handleChangeName} />
                             </Box>
-                            <Box sx={{ marginTop:"8px", marginBottom:"8px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
+                            <Box sx={{ marginTop: "8px", marginBottom: "8px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
                                 <Typography id="modal-modal-description" sx={{ mt: 1, width: "25%" }} > Set Priority : </Typography>
                                 <Box sx={{ minWidth: 120 }}>
                                     <FormControl sx={{ minWidth: 120 }} size="small">
@@ -179,7 +179,7 @@ const ListItems = (props) => {
                             </Box>
                             <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
                                 <Typography id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Assignee : </Typography>
-                                <TextField style={{flex:"1"}} error={assigneeError} label="Assignee" id="fullWidth" size='small' onChange={handleChangeAssignee} value={assignee} />
+                                <TextField style={{ flex: "1" }} error={assigneeError} label="Assignee" id="fullWidth" size='small' onChange={handleChangeAssignee} value={assignee} />
                             </Box>
                             <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", marginTop: '10px', marginBottom: '10px' }}>
                                 <Typography id="modal-modal-description" sx={{ width: "25%" }}> Story Points : </Typography>
@@ -188,7 +188,7 @@ const ListItems = (props) => {
                             <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
                                 <Typography id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Status : </Typography>
                                 <Box sx={{ minWidth: 120 }}>
-                                    <FormControl sx={{minWidth: 120 }} size="small">
+                                    <FormControl sx={{ minWidth: 120 }} size="small">
                                         <InputLabel id="demo-select-small">Status</InputLabel>
                                         <Select
                                             labelId="demo-select-small"
@@ -197,9 +197,11 @@ const ListItems = (props) => {
                                             label="status"
                                             onChange={handleChangeStatus}
                                         >
-                                            <MenuItem value={"Todo"}>Todo</MenuItem>
-                                            <MenuItem value={"In-Progress"}>In-Progress</MenuItem>
-                                            <MenuItem value={"Completed"}>Completed</MenuItem>
+                                            {
+                                                taskStatus.map((status) => {
+                                                    return <MenuItem value={status} key={status}>{status}</MenuItem>
+                                                })
+                                            }
                                         </Select>
                                     </FormControl>
                                 </Box>

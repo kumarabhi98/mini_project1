@@ -12,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import useTaskStore from '../store/appStore';
+import { taskStatus } from '../utils/OtherUtils';
 // import { DragDropContext } from 'react-beautiful-dnd';
 // import { FastfoodOutlined } from '@mui/icons-material';
 
@@ -158,9 +159,11 @@ const TaskBoard = () => {
                                         label="status"
                                         onChange={handleChangeStatus}
                                     >
-                                        <MenuItem value={"Todo"}>Todo</MenuItem>
-                                        <MenuItem value={"In-Progress"}>In-Progress</MenuItem>
-                                        <MenuItem value={"Completed"}>Completed</MenuItem>
+                                        {
+                                            taskStatus.map((status) =>{
+                                                return <MenuItem value={status} key={status}>{status}</MenuItem>
+                                            })
+                                        }
                                     </Select>
                                 </FormControl>
                             </Box>
@@ -180,9 +183,11 @@ const TaskBoard = () => {
             <TaskFliter />
 
             <div className='task'>
-                <List heading="Todo" />
-                <List heading="In-Progress" />
-                <List heading="Completed" />
+                {
+                    taskStatus.map((status)=>{
+                        return <List heading={`${status}`} key={status}/>
+                    })
+                }
             </div>
         </div>
     )

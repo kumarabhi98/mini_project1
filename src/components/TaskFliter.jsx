@@ -31,29 +31,29 @@ function TaskFliter() {
     }
     return (
         <div className='task-fliter'>
-            <div className='task-fliter-input'>
+            {/* <div className='task-fliter-input'> */}
                 <Box
                     sx={{
-                        width: "47%",
-                        maxWidth: '100%',
+                        width: "44%",
+                        margin : "5px"
                     }}
                 >
                     <TextField fullWidth label="Search for a Task" id="fullWidth" onChange={handleTask} 
-                    value={task} style={{backgroundColor:"white", borderRadius:"5px"}}
+                    value={task} style={{backgroundColor:"white", borderRadius:"5px", background: "rgba(255, 255, 255, 0.6)"}}
                     />
                 </Box>
                 <Box
                     sx={{
-                        width: "47%",
-                        maxWidth: '100%',
+                        width: "44%",
+                        margin : "5px"
                     }}
                 >
                     <TextField fullWidth label="filter by assignee" id="fullWidth" onChange={handleAssignee} 
-                    value={assignee} style={{backgroundColor:"white", borderRadius: "5px"}}
+                    value={assignee} style={{backgroundColor:"white", borderRadius: "5px", background: "rgba(255, 255, 255, 0.6)"}}
                     />
                 </Box>
-            </div>
-            <button className="taskBoard-button" onClick={handleClear}>Clear Filters</button>
+            {/* </div> */}
+            <button className="taskBoard-button" onClick={handleClear} style={{justifySelf:"center"}}>Clear Filters</button>
         </div>
     )
 }

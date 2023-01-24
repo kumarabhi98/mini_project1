@@ -1,13 +1,9 @@
 import React from 'react'
+import { getDays, getHours } from '../utils/HelperFunctions';
 
 const DeletedItems = ({ task, index }) => {
-    const newDate = new Date();
-    const date = parseInt(task.date);
-    let diff = newDate.getTime() - date;
-    let dd = Math.floor(diff/1000/60/60/24);
-    let hh = diff - dd*1000*60*60*24; 
-    hh = Math.floor(hh/1000/60/60);
-    // console.log(new date());
+    let dd = getDays(task.date);
+    let hh = getHours(task.date); 
 
     return (
         <div className='Deleted-items'>

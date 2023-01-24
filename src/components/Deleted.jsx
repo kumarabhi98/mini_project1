@@ -1,7 +1,6 @@
 import React from 'react'
 import useTaskStore from '../store/appStore'
 import DeletedItems from './DeletedItems';
-import Try from './Try'
 
 
 const Deleted = () => {
