@@ -8,9 +8,10 @@ function TaskFliter() {
     const [task,setTask] = useState("");
     const [assignee,setAssignee] = useState("");
 
-    const {setFilterTask,setFilterAssignee} = useTaskStore((state) =>({
+    const {setFilterTask,setFilterAssignee, dark} = useTaskStore((state) =>({
         setFilterTask: state.setFilterTask,
-        setFilterAssignee: state.setFilterAssignee
+        setFilterAssignee: state.setFilterAssignee,
+        dark: state.dark
     }));
 
     const handleTask = (event) =>{
@@ -30,26 +31,28 @@ function TaskFliter() {
         setFilterAssignee('');
     }
     return (
-        <div className='task-fliter'>
+        <div className={`task-fliter ${dark ? "task-fliter-dark": ""}`}>
             {/* <div className='task-fliter-input'> */}
                 <Box
-                    sx={{
-                        width: "44%",
-                        margin : "5px"
-                    }}
+                    // sx={{
+                    //     width: "44%",
+                    //     margin : "5px"
+                    // }}
+                    className = "task-fliter-box"
                 >
                     <TextField fullWidth label="Search for a Task" id="fullWidth" onChange={handleTask} 
-                    value={task} style={{backgroundColor:"white", borderRadius:"5px", background: "rgba(255, 255, 255, 0.6)"}}
+                    value={task} style={{borderRadius:"5px", backgroundColor: "rgba(255, 255, 255, 0.6)"}}
                     />
                 </Box>
                 <Box
-                    sx={{
-                        width: "44%",
-                        margin : "5px"
-                    }}
+                    // sx={{
+                    //     width: "44%",
+                    //     margin : "5px"
+                    // }}
+                    className = "task-fliter-box"
                 >
                     <TextField fullWidth label="filter by assignee" id="fullWidth" onChange={handleAssignee} 
-                    value={assignee} style={{backgroundColor:"white", borderRadius: "5px", background: "rgba(255, 255, 255, 0.6)"}}
+                    value={assignee} style={{bborderRadius: "5px", backgroundColor: "rgba(255, 255, 255, 0.6)"}}
                     />
                 </Box>
             {/* </div> */}

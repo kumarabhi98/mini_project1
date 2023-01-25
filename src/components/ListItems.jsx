@@ -34,6 +34,7 @@ const style2 = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: "40%",
+    minWidth: "500px",
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -43,9 +44,10 @@ const style2 = {
 
 
 const ListItems = (props) => {
-    const { removeTask, updateTask } = useTaskStore((state) => ({
+    const { removeTask, updateTask, dark } = useTaskStore((state) => ({
         removeTask: state.removeTask,
-        updateTask: state.updateTask
+        updateTask: state.updateTask,
+        dark: state.dark
     }));
 
     const [open, setOpen] = React.useState(false);
@@ -108,7 +110,7 @@ const ListItems = (props) => {
         <Draggable draggableId={`${props.task.taskId}`} index={props.index}>
             {(provided, snapshot) => (
                 <div
-                    className={`List-items ${snapshot.isDragging ? "drag" : ""} ${(props.task.status !== "Completed" && getDays(props.task.date) >= parseInt(props.task.story_points)) ? "due-task" : ""}`}
+                    className={`List-items ${snapshot.isDragging ? "drag" : ""} ${(props.task.status !== "Completed" && getDays(props.task.date) >= parseInt(props.task.story_points)) ? "due-task" : ""} ${dark? "List-items-dark" : ""}`}
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}

@@ -9,19 +9,25 @@
    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-#header{
+.header{
   display: flex;
-  height: 10%;
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(150deg, rgb(31, 52, 77), rgb(47, 117, 202) 100%);
+  background: linear-gradient(150deg, rgb(38, 65, 95), rgb(47, 117, 202) 100%);
   color: aliceblue;
   padding: 0px 20px 0px 20px;
-  position: sticky;
+  position: fixed;
+  height: 10vh;
   top: 0px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;  
   z-index: 1000;
+ }
+
+ .header-dark{
+   background: #085976 ;
+   border-bottom: 5px solid #053040;
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
  }
 
  #header h2:active{
@@ -29,13 +35,13 @@
  }
 
 #taskBoard{
+  padding-top: 10vh;
   min-height: 90%;
   width: 100%;
   max-width: 1600px;
   display: flex;
   flex-direction: column;
   margin: auto;
-  background-color: aliceblue;
 }
 
 .taskBoard-button{
@@ -80,6 +86,26 @@
   box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
+.task-fliter-box{
+  width: 44%;
+  margin: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  .task-fliter {
+    flex-direction: column;
+    border-radius: 10px;
+  }
+  .task-fliter-box{
+    width: 100%;
+    margin: 1px 1px 8px 1px;
+  }
+}
+
+.task-fliter-dark{
+  background: linear-gradient(150deg, #249c62, #1c2464 100%);
+}
+
 .task-fliter-input{
   display: flex;
   flex-direction: row;
@@ -100,7 +126,7 @@
   /* flex-direction: row; */
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   column-gap: 40px;
-  row-gap: 50px;
+  row-gap: 40px;
   flex: 1;
   padding-bottom: 20px;
   justify-content: space-between;
@@ -119,8 +145,12 @@
   border-radius: 15px 15px 5px 5px;
 }
 
+.List-body-dark{
+  background-color: #929eab;
+}
+
 .List-body-heading{
-  background-image: linear-gradient(to right, #008CBA ,  rgb(11, 70, 141));;
+  background-image: linear-gradient(to right, #008CBA ,  rgb(11, 70, 141));
   border-radius: 15px 15px 0px 0px;
   width: 100%;
   color: rgb(230, 239, 244);
@@ -130,6 +160,9 @@
   font-size: 1.5rem;
   font-weight: 600;
   padding-left: 15px;
+}
+.List-body-heading-dark{
+  background-image: linear-gradient(to right, #085976 ,  rgb(7, 50, 103));
 }
 .List-body-items{
   flex: 1;
@@ -151,10 +184,13 @@
   margin: 5px 0px 2px 0px;
   transition: 0.1s;
   font-size: 1rem;
-  /* border-bottom: 1px solid rgb(185, 184, 184); */
   background-color: rgb(252, 252, 252);
   border-radius: 20px 2px 20px 2px;
   box-shadow: rgba(50, 50, 93, 0.7) 0px 2px 5px -1px, rgba(0, 0, 0) 0px 1px 3px -1px;
+}
+
+.List-items-dark{
+  background-color: rgb(202, 204, 212);
 }
 
 .drag{
@@ -193,9 +229,14 @@
   padding: 5px;
   margin-bottom: 20px;
   background: #f2f2f2;
-  border-radius: 2px;
+  border-radius: 10px;
   cursor: pointer;
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;}
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+.Deleted-items-dark{
+  background: #b0b2c1;
+}
 
 .Deleted-items span{
   width: 20%;
@@ -209,6 +250,9 @@
   justify-content: flex-start;
   max-width: 1500px;
   margin: auto;
+  padding-top: 10vh;
+  min-height: 100vh;
+  width: 100%;
 }
 
 .Deleted-box h1{
@@ -222,6 +266,37 @@
   -webkit-background-clip: text;
   background-clip: text;
   margin-bottom: 20px;
+}
+
+.darkmode{
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  height: 50px;
+  width: 50px;
+  background-color: rgb(15, 22, 48);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 5px;
+}
+
+.lightmode{
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  height: 50px;
+  width: 50px;
+  background-color: rgb(223, 240, 254);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-radius: 5px;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  
 }
 
 ::-webkit-scrollbar {

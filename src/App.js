@@ -5,9 +5,13 @@ import { Route, Routes } from 'react-router-dom';
 import Deleted from './components/Deleted';
 import { DragDropContext } from 'react-beautiful-dnd';
 import useTaskStore from './store/appStore';
+import Darkmode from './components/Darkmode';
 
 function App() {
-  const updateStatus = useTaskStore((state) => state.updateStatus);
+  const {updateStatus,dark} = useTaskStore((state) => ({
+    updateStatus: state.updateStatus,
+    dark: state.dark
+  }));
   const onDragEnd = (result) => {
     const destination = result.destination;
     const source = result.source;
@@ -18,12 +22,13 @@ function App() {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div style={{ height: "100vh", width: "100vw" }}>
+      <div style={{backgroundColor: dark?"rgb(31, 52, 77)":"aliceblue"}}>
         <Header />
         <Routes>
           <Route path='/' element={<TaskBoard />} />
           <Route path='/deleted' element={<Deleted />} />
         </Routes>
+        <Darkmode/>
       </div>
     </DragDropContext>
   );

@@ -11,11 +11,12 @@ import { Droppable } from 'react-beautiful-dnd';
 
 
 const List = (props) => {
-  const { tasks, filterTask, filterAssignee } = useTaskStore(
+  const { tasks, filterTask, filterAssignee,dark } = useTaskStore(
     (state) => ({
       tasks: state.tasks,
       filterTask: state.filterTask,
-      filterAssignee: state.filterAssignee
+      filterAssignee: state.filterAssignee,
+      dark: state.dark
     })
   );
 
@@ -23,8 +24,8 @@ const List = (props) => {
   //memo
   return (
 
-    <div className='List-body'>
-      <div className='List-body-heading'>{props.heading}</div>
+    <div className={`List-body ${dark? 'List-body-dark':''}`}>
+      <div className={`List-body-heading ${dark ? "List-body-heading-dark": ""}`}>{props.heading}</div>
       <Droppable droppableId={props.heading} >
         {
           (provided, snapshot) => (

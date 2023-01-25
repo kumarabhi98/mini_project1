@@ -23,6 +23,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: "40%",
+    minWidth: "500px",
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -115,7 +116,7 @@ const TaskBoard = () => {
                     aria-describedby="modal-modal-description"
                 >
                     <Box sx={style}>
-                        <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start",width:"100%" }}>
+                        <Box sx={{ display: "flex" ,flexDirection: "row", alignItems: "center", justifyContent: "flex-start",width:"100%" }}>
                             <Typography id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Task name : </Typography>
                             <TextField error={nameError} style={{flex:"1"}} label="Name" id="fullWidth" size='small' onChange={handleChangeName} value={name} />
                         </Box>

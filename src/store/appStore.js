@@ -6,6 +6,7 @@ const taskStore = (set) => ({
     deleted: [],
     filterTask: "",
     filterAssignee: "",
+    dark: false,
 
     setFilterTask: (value) => {
         set((state) => ({
@@ -72,6 +73,11 @@ const taskStore = (set) => ({
                 }
                 else return task;
             })
+        }))
+    },
+    toggleDark: ()=>{
+        set((state) =>({
+            dark: !state.dark
         }))
     }
 })
