@@ -115,7 +115,7 @@ const ListItems = (props) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-                    <p className='items-info' style={{fontSize:"1.3rem", textTransform:"capitalize"}}>
+                    <p className='items-info'>
                         {`${props.task.name_}`}
                         <p style={{fontSize:"small", marginTop:"5px"}}>
                             <p>{`Assigned by: ${props.task.assignee}`}</p>
@@ -154,8 +154,8 @@ const ListItems = (props) => {
                         aria-labelledby="modal-modal-title"
                         aria-describedby="modal-modal-description"
                     >
-                        <Box sx={style2}>
-                            <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
+                        <Box sx={style2} >
+                            <Box sx={{ display: "flex", flexWrap:"wrap" ,flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
                                 <Typography id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Task name : </Typography>
                                 <TextField style={{ flex: "1" }} error={nameError} label="Name" id="fullWidth" size='small' value={name} onChange={handleChangeName} />
                             </Box>

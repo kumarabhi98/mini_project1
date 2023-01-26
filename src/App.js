@@ -22,7 +22,7 @@ function App() {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div style={{backgroundColor: dark?"rgb(31, 52, 77)":"aliceblue"}}>
+      <div style={{dminWidthwidth:"100vw", minHeightheight:"100vh" , backgroundColor: dark?"rgb(31, 52, 77)":"aliceblue"}}>
         <Header />
         <Routes>
           <Route path='/' element={<TaskBoard />} />

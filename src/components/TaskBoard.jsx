@@ -115,7 +115,7 @@ const TaskBoard = () => {
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                 >
-                    <Box sx={style}>
+                    <Box  sx={style}>
                         <Box sx={{ display: "flex" ,flexDirection: "row", alignItems: "center", justifyContent: "flex-start",width:"100%" }}>
                             <Typography id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Task name : </Typography>
                             <TextField error={nameError} style={{flex:"1"}} label="Name" id="fullWidth" size='small' onChange={handleChangeName} value={name} />
@@ -169,7 +169,7 @@ const TaskBoard = () => {
                                 </FormControl>
                             </Box>
                         </Box>
-                        <Box sx={{ display: "flex", justifyContent: "space-between", mt: "5px" }}>
+                        <Box sx={{ display: "flex", flexWrap:"wrap" ,justifyContent: "space-between", mt: "5px",mb:"5px" }}>
 
                             <Button variant="contained" href="#contained-buttons" onClick={handleClose}>
                                 Close

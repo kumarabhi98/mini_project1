@@ -11,7 +11,7 @@ const DeletedItems = ({ task, index }) => {
 
     return (
         <div className={`Deleted-items ${dark ?"Deleted-items-dark":""}`}>
-            <span>{index+1}</span>
+            <span>Task : {`${index+1}`}</span>
             <span>{task.name_}</span>
             <span>{task.assignee}</span>
             <span>{task.status}</span>

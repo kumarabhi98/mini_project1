@@ -34,10 +34,6 @@ function TaskFliter() {
         <div className={`task-fliter ${dark ? "task-fliter-dark": ""}`}>
             {/* <div className='task-fliter-input'> */}
                 <Box
-                    // sx={{
-                    //     width: "44%",
-                    //     margin : "5px"
-                    // }}
                     className = "task-fliter-box"
                 >
                     <TextField fullWidth label="Search for a Task" id="fullWidth" onChange={handleTask} 
@@ -45,14 +41,10 @@ function TaskFliter() {
                     />
                 </Box>
                 <Box
-                    // sx={{
-                    //     width: "44%",
-                    //     margin : "5px"
-                    // }}
                     className = "task-fliter-box"
                 >
                     <TextField fullWidth label="filter by assignee" id="fullWidth" onChange={handleAssignee} 
-                    value={assignee} style={{bborderRadius: "5px", backgroundColor: "rgba(255, 255, 255, 0.6)"}}
+                    value={assignee} style={{borderRadius: "5px", backgroundColor: "rgba(255, 255, 255, 0.6)"}}
                     />
                 </Box>
             {/* </div> */}

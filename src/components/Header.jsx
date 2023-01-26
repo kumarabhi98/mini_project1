@@ -11,8 +11,8 @@ const Header = () => {
   );
   return (
     <div className={`header ${dark ? "header-dark":""}`}>
-        <Link to="/" style={{ textDecoration: 'none', color: "aliceblue"}}> <h2>Task Board </h2></Link>
-        <Link to="/deleted" style={{ textDecoration: 'none', color: "aliceblue" }}><h2> Deleted tasks </h2></Link>
+        <Link to="/" style={{ textDecoration: 'none', color: "aliceblue"}}> Task Board </Link>
+        <Link to="/deleted" style={{ textDecoration: 'none', color: "aliceblue" }}>Deleted tasks </Link>
     </div>
   )
 }

@@ -11,7 +11,7 @@
 
 .header{
   display: flex;
-  width: 100%;
+  width: 100vw;
   justify-content: space-between;
   align-items: center;
   background: linear-gradient(150deg, rgb(38, 65, 95), rgb(47, 117, 202) 100%);
@@ -19,9 +19,13 @@
   padding: 0px 20px 0px 20px;
   position: fixed;
   height: 10vh;
+  max-height: 90px;
+  min-height: 70px;
   top: 0px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;  
   z-index: 1000;
+  font-size: 1.5rem;
+  font-weight: 500;
  }
 
  .header-dark{
@@ -30,14 +34,14 @@
    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
  }
 
- #header h2:active{
+ /* #header h2:active{
   color: #63a4ba;
- }
+ } */
 
 #taskBoard{
   padding-top: 10vh;
-  min-height: 90%;
-  width: 100%;
+  min-height: 100vh;
+  width: 100vw;
   max-width: 1600px;
   display: flex;
   flex-direction: column;
@@ -217,7 +221,8 @@
   flex-direction: column;
   justify-content:flex-start ;
   padding-left: 10px;
-  /* align-items: center; */
+  font-size: 1.3rem;
+  text-transform:capitalize;
 }
 
 .Deleted-items{
@@ -252,7 +257,7 @@
   margin: auto;
   padding-top: 10vh;
   min-height: 100vh;
-  width: 100%;
+  width: 100vw;
 }
 
 .Deleted-box h1{
@@ -301,4 +306,40 @@
 
 ::-webkit-scrollbar {
   width: 0px;
+}
+
+@media only screen and (max-width: 500px) {
+  .task{
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  .header {
+    font-size: 1rem;
+   }
+   .items-info{
+    font-size: 1rem;
+  }
+  .items-info p{
+    font-size: 0.7rem;
+  }
+  .Deleted-items span{
+    width: auto;
+  }
+  .Deleted-items{
+    display: grid;
+    height: auto;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+  .Deleted-box h1 {
+    font-size: 1.5rem;
+    margin-top: 10px;
+  }
+  .List-body{
+    height: 300px;
+  }
+  .List-items{
+    margin: 2px 0px 2px 0px;
+  }
+  .header{
+    max-height: 70px;
+  }
 }
