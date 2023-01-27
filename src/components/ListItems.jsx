@@ -33,13 +33,10 @@ const style2 = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: "40%",
-    minWidth: "500px",
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-    maxWidth: "600px"
 };
 
 
@@ -115,15 +112,15 @@ const ListItems = (props) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-                    <p className='items-info'>
+                    <div className='items-info'>
                         {`${props.task.name_}`}
-                        <p style={{fontSize:"small", marginTop:"5px"}}>
+                        <div style={{fontSize:"small", marginTop:"5px"}}>
                             <p>{`Assigned by: ${props.task.assignee}`}</p>
                             <p>{`Priority: ${props.task.priority}`}</p>
-                        </p>
-                    </p>
-                    <EditIcon sx={{ mr: 1, ml: 1, color: "rgb(31, 52, 77)" }} onClick={handleUpdateOpen} />
-                    <DeleteIcon sx={{ mr: 1, ml: 1, color: "rgb(31, 52, 77)" }} onClick={handleOpen} />
+                        </div>
+                    </div>
+                    <EditIcon sx={{ marginRight: "15px", color: "rgb(31, 52, 77)" }} onClick={handleUpdateOpen} />
+                    <DeleteIcon sx={{ marginRight: "1px", color: "rgb(31, 52, 77)" }} onClick={handleOpen} />
                     <Modal
                         open={open}
                         onClose={handleClose}
@@ -154,13 +151,13 @@ const ListItems = (props) => {
                         aria-labelledby="modal-modal-title"
                         aria-describedby="modal-modal-description"
                     >
-                        <Box sx={style2} >
+                        <Box sx={style2} className="Modal-box">
                             <Box sx={{ display: "flex", flexWrap:"wrap" ,flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
-                                <Typography id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Task name : </Typography>
-                                <TextField style={{ flex: "1" }} error={nameError} label="Name" id="fullWidth" size='small' value={name} onChange={handleChangeName} />
+                                <Typography className='Modal-typo' id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Task name : </Typography>
+                                <TextField style={{ flex: "1"}} error={nameError} label="Name" id="fullWidth" size='small' value={name} onChange={handleChangeName} />
                             </Box>
                             <Box sx={{ marginTop: "8px", marginBottom: "8px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
-                                <Typography id="modal-modal-description" sx={{ mt: 1, width: "25%" }} > Set Priority : </Typography>
+                                <Typography className='Modal-typo' id="modal-modal-description" sx={{ mt: 1, width: "25%" }} > Set Priority : </Typography>
                                 <Box sx={{ minWidth: 120 }}>
                                     <FormControl sx={{ minWidth: 120 }} size="small">
                                         <InputLabel id="demo-select-small">Priority</InputLabel>
@@ -180,15 +177,15 @@ const ListItems = (props) => {
                                 </Box>
                             </Box>
                             <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
-                                <Typography id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Assignee : </Typography>
+                                <Typography className='Modal-typo' id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Assignee : </Typography>
                                 <TextField style={{ flex: "1" }} error={assigneeError} label="Assignee" id="fullWidth" size='small' onChange={handleChangeAssignee} value={assignee} />
                             </Box>
                             <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", marginTop: '10px', marginBottom: '10px' }}>
-                                <Typography id="modal-modal-description" sx={{ width: "25%" }}> Story Points : </Typography>
+                                <Typography className='Modal-typo' id="modal-modal-description" sx={{ width: "25%" }}> Story Points : </Typography>
                                 <TextField id="outlined-basic" error={pointError} label="Story Points " variant="outlined" size='small' onChange={handleChangePoint} value={point} />
                             </Box>
                             <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
-                                <Typography id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Status : </Typography>
+                                <Typography className='Modal-typo' id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Status : </Typography>
                                 <Box sx={{ minWidth: 120 }}>
                                     <FormControl sx={{ minWidth: 120 }} size="small">
                                         <InputLabel id="demo-select-small">Status</InputLabel>

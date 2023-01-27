@@ -13,22 +13,17 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import useTaskStore from '../store/appStore';
 import { taskStatus } from '../utils/OtherUtils';
-// import { DragDropContext } from 'react-beautiful-dnd';
-// import { FastfoodOutlined } from '@mui/icons-material';
-
 
 const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: "40%",
-    minWidth: "500px",
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-    maxWidth:"600px"
+    fontSize:"2px",
 };
 
 const TaskBoard = () => {
@@ -115,13 +110,13 @@ const TaskBoard = () => {
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                 >
-                    <Box  sx={style}>
+                    <Box  sx={style} className="Modal-box">
                         <Box sx={{ display: "flex" ,flexDirection: "row", alignItems: "center", justifyContent: "flex-start",width:"100%" }}>
-                            <Typography id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Task name : </Typography>
+                            <Typography className='Modal-typo' id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Task name : </Typography>
                             <TextField error={nameError} style={{flex:"1"}} label="Name" id="fullWidth" size='small' onChange={handleChangeName} value={name} />
                         </Box>
                         <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", width:"100%", marginTop:"8px",marginBottom:"8px" }}>
-                            <Typography id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Set Priority : </Typography>
+                            <Typography className='Modal-typo' id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Set Priority : </Typography>
                             <Box sx={{ minWidth: 120 }}>
                                 <FormControl sx={{ minWidth: 120 }} size="small">
                                     <InputLabel id="demo-select-small">Priority</InputLabel>
@@ -141,15 +136,15 @@ const TaskBoard = () => {
                             </Box>
                         </Box>
                         <Box sx={{ width:"100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
-                            <Typography id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Assignee : </Typography>
+                            <Typography className='Modal-typo' id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Assignee : </Typography>
                             <TextField error={assigneeError} style={{flex:"1"}} fullWidth label="Assignee" id="fullWidth" size='small' onChange={handleChangeAssignee} value={assignee} />
                         </Box>
                         <Box sx={{ width:"100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", marginTop: '10px', marginBottom: '10px' }}>
-                            <Typography id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Story Points : </Typography>
+                            <Typography className='Modal-typo' id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Story Points : </Typography>
                             <TextField error={pointError} id="outlined-basic" label="Story Points " variant="outlined" size='small' onChange={handleChangePoint} value={point} />
                         </Box>
                         <Box sx={{ width:"100%", marginTop:"8px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
-                            <Typography id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Status : </Typography>
+                            <Typography className='Modal-typo' id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Status : </Typography>
                             <Box sx={{ minWidth: 120 }}>
                                 <FormControl sx={{minWidth: 120 }} size="small">
                                     <InputLabel id="demo-select-small">Status</InputLabel>
@@ -169,7 +164,7 @@ const TaskBoard = () => {
                                 </FormControl>
                             </Box>
                         </Box>
-                        <Box sx={{ display: "flex", flexWrap:"wrap" ,justifyContent: "space-between", mt: "5px",mb:"5px" }}>
+                        <Box sx={{ display: "flex", flexWrap:"wrap" ,justifyContent: "space-between", marginTop: "20px",mb:"5px" }}>
 
                             <Button variant="contained" href="#contained-buttons" onClick={handleClose}>
                                 Close
