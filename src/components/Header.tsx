@@ -7,25 +7,25 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-const ITEM_HEIGHT = 48;
+const ITEM_HEIGHT:number = 48;
 
-const Header = () => {
+const Header :React.FC = () => {
   const { dark } = useTaskStore(
     (state) => ({
       dark: state.dark
     })
   );
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const [value, setValue] = React.useState('Task Board');
-  const handleClick = (event) => {
+  const [anchorEl, setAnchorEl] = React.useState<any>(null);
+  const open:boolean = Boolean(anchorEl);
+  const [value, setValue] = React.useState<string>('Task Board');
+  const handleClick = (event:any) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = (event) => {
+  const handleClose = (event:any) => {
     setValue(event.target.innerText);
     setAnchorEl(null);
   };
-  const handleCloseMenu = (event) => {
+  const handleCloseMenu = (event:any) => {
     setAnchorEl(null);
   };
   return (

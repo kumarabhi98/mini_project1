@@ -4,7 +4,7 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import useTaskStore from '../store/appStore';
 import '../App.css'
 
-const Darkmode = () => {
+const Darkmode: React.FC = () => {
     let { dark, toggleDark } = useTaskStore((state) => ({
         dark: state.dark,
         toggleDark: state.toggleDark

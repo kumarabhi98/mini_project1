@@ -2,12 +2,18 @@ import React from 'react'
 import { getDays, getHours } from '../utils/HelperFunctions';
 import useTaskStore from '../store/appStore';
 import '../App.css'
+import { Task } from '../utils/Model';
 
-const DeletedItems = ({ task, index }) => {
+interface props {
+    task: Task;
+    index: number;
+}
+
+const DeletedItems: React.FC<props> = ({ task, index }) => {
     const dark = useTaskStore((state) => state.dark);
 
-    let dd = getDays(task.date);
-    let hh = getHours(task.date); 
+    let dd:number = getDays(task.date);
+    let hh:number = getHours(task.date); 
 
     return (
         <div className={`Deleted-items ${dark ?"Deleted-items-dark":""}`}>

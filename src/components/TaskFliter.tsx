@@ -5,8 +5,8 @@ import TextField from '@mui/material/TextField';
 import useTaskStore from '../store/appStore';
 
 function TaskFliter() {
-    const [task,setTask] = useState("");
-    const [assignee,setAssignee] = useState("");
+    const [task,setTask] = useState<string>("");
+    const [assignee,setAssignee] = useState<string>("");
 
     const {setFilterTask,setFilterAssignee, dark} = useTaskStore((state) =>({
         setFilterTask: state.setFilterTask,
@@ -14,12 +14,12 @@ function TaskFliter() {
         dark: state.dark
     }));
 
-    const handleTask = (event) =>{
+    const handleTask = (event:any) =>{
         setFilterTask(event.target.value);
         setTask(event.target.value);
     }
 
-    const handleAssignee = (event) =>{
+    const handleAssignee = (event:any) =>{
         setFilterAssignee(event.target.value);
         setAssignee(event.target.value);
     };
@@ -32,7 +32,6 @@ function TaskFliter() {
     }
     return (
         <div className={`task-fliter ${dark ? "task-fliter-dark": ""}`}>
-            {/* <div className='task-fliter-input'> */}
                 <Box
                     className = "task-fliter-box"
                 >
@@ -47,7 +46,6 @@ function TaskFliter() {
                     value={assignee} style={{borderRadius: "5px", backgroundColor: "rgba(255, 255, 255, 0.6)"}}
                     />
                 </Box>
-            {/* </div> */}
             <button className="taskBoard-button" onClick={handleClear} style={{justifySelf:"center"}}>Clear Filters</button>
         </div>
     )

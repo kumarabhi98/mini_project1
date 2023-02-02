@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import Header from './components/Header';
 import TaskBoard from './components/TaskBoard'
@@ -12,7 +13,7 @@ function App() {
     updateStatus: state.updateStatus,
     dark: state.dark
   }));
-  const onDragEnd = (result) => {
+  const onDragEnd = (result: any) => {
     const destination = result.destination;
     const source = result.source;
     const draggableId = parseInt(result.draggableId);
@@ -22,7 +23,7 @@ function App() {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div style={{dminWidthwidth:"100vw", minHeightheight:"100vh" , backgroundColor: dark?"rgb(31, 52, 77)":"aliceblue"}}>
+      <div style={{minWidth:"100vw", minHeight:"100vh" , backgroundColor: dark?"rgb(31, 52, 77)":"aliceblue"}}>
         <Header />
         <Routes>
           <Route path='/' element={<TaskBoard />} />

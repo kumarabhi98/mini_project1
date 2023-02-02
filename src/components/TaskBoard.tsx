@@ -26,40 +26,40 @@ const style = {
     fontSize:"2px",
 };
 
-const TaskBoard = () => {
+const TaskBoard : React.FC = () => {
     const addTask = useTaskStore((state) => state.addTask)
 
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState<boolean>(false);
     const handleOpen = () => setOpen(true);
 
-    const [name, setName] = useState("");
-    const [assignee, setAssignee] = useState("");
-    const [point, setPoint] = useState("");
-    const [priority, setPriority] = useState('P0');
-    const [status, setStatus] = useState('Todo');
+    const [name, setName] = useState<string>("");
+    const [assignee, setAssignee] = useState<string>("");
+    const [point, setPoint] = useState<string>("");
+    const [priority, setPriority] = useState<string>('P0');
+    const [status, setStatus] = useState<string>('Todo');
 
-    const [nameError, setNameError] = useState(false);
-    const [assigneeError, setAssigneeError] = useState(false);
-    const [pointError, setPointError] = useState(false);
+    const [nameError, setNameError] = useState<boolean>(false);
+    const [assigneeError, setAssigneeError] = useState<boolean>(false);
+    const [pointError, setPointError] = useState<boolean>(false);
 
 
-    const handleChangePriority = (event) => {
+    const handleChangePriority = (event:any) => {
         setPriority(event.target.value);
     };
 
-    const handleChangeStatus = (event) => {
+    const handleChangeStatus = (event:any) => {
         setStatus(event.target.value);
     };
 
-    const handleChangeName = (event) => {
+    const handleChangeName = (event:any) => {
         setName(event.target.value);
     };
 
-    const handleChangeAssignee = (event) => {
+    const handleChangeAssignee = (event:any) => {
         setAssignee(event.target.value);
     };
 
-    const handleChangePoint = (event) => {
+    const handleChangePoint = (event:any) => {
         setPoint(event.target.value);
     };
 
@@ -141,7 +141,7 @@ const TaskBoard = () => {
                         </Box>
                         <Box sx={{ width:"100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", marginTop: '10px', marginBottom: '10px' }}>
                             <Typography className='Modal-typo' id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Story Points : </Typography>
-                            <TextField error={pointError} id="outlined-basic" label="Story Points " variant="outlined" size='small' onChange={handleChangePoint} value={point} />
+                            <TextField error={pointError} type="number" id="outlined-basic" label="Story Points " variant="outlined" size='small' onChange={handleChangePoint} value={point} />
                         </Box>
                         <Box sx={{ width:"100%", marginTop:"8px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
                             <Typography className='Modal-typo' id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Status : </Typography>
@@ -156,7 +156,7 @@ const TaskBoard = () => {
                                         onChange={handleChangeStatus}
                                     >
                                         {
-                                            taskStatus.map((status) =>{
+                                            taskStatus.map((status:string) =>{
                                                 return <MenuItem value={status} key={status}>{status}</MenuItem>
                                             })
                                         }
@@ -180,8 +180,8 @@ const TaskBoard = () => {
 
             <div className='task'>
                 {
-                    taskStatus.map((status)=>{
-                        return <List heading={`${status}`} key={status}/>
+                    taskStatus.map((status:string)=>{
+                        return <List heading = {`${status}`} key={status}/>
                     })
                 }
             </div>

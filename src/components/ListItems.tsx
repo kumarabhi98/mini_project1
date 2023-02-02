@@ -14,6 +14,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import EditIcon from '@mui/icons-material/Edit';
 import { taskStatus } from '../utils/OtherUtils';
 import { getDays } from '../utils/HelperFunctions';
+import { Task } from '../utils/Model';
 
 
 const style = {
@@ -40,50 +41,50 @@ const style2 = {
 };
 
 
-const ListItems = (props) => {
+const ListItems: React.FC<{task:Task,setOpen: Function, index: number}> = ({task,setOpen,index}) => {
     const { removeTask, updateTask, dark } = useTaskStore((state) => ({
         removeTask: state.removeTask,
         updateTask: state.updateTask,
         dark: state.dark
     }));
 
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [open, setThisOpen] = React.useState<boolean>(false);
+    const handleOpen = () => setThisOpen(true);
+    const handleClose = () => setThisOpen(false);
 
-    const [updateOpen, setUpdateOpen] = React.useState(false);
+    const [updateOpen, setUpdateOpen] = React.useState<boolean>(false);
     const handleUpdateOpen = () => setUpdateOpen(true);
     const handleUpdateClose = () => setUpdateOpen(false);
 
-    const [name, setName] = useState(props.task.name_);
-    const [assignee, setAssignee] = useState(props.task.assignee);
-    const [point, setPoint] = useState(props.task.story_points);
-    const [priority, setPriority] = useState(props.task.priority);
-    const [status, setStatus] = useState(props.task.status);
+    const [name, setName] = useState<string>(task.name_);
+    const [assignee, setAssignee] = useState<string>(task.assignee);
+    const [point, setPoint] = useState<string>(task.story_points);
+    const [priority, setPriority] = useState<string>(task.priority);
+    const [status, setStatus] = useState<string>(task.status);
 
-    const [nameError, setNameError] = useState(false);
-    const [assigneeError, setAssigneeError] = useState(false);
-    const [pointError, setPointError] = useState(false);
+    const [nameError, setNameError] = useState<boolean>(false);
+    const [assigneeError, setAssigneeError] = useState<boolean>(false);
+    const [pointError, setPointError] = useState<boolean>(false);
 
-    const deletetask = () => { removeTask(props.task.taskId); }
+    const deletetask = () => { removeTask(task.taskId); }
 
-    const handleChangeName = (event) => {
+    const handleChangeName = (event:any) => {
         setName(event.target.value);
     };
 
-    const handleChangePriority = (event) => {
+    const handleChangePriority = (event:any) => {
         setPriority(event.target.value);
     };
 
-    const handleChangeStatus = (event) => {
+    const handleChangeStatus = (event:any) => {
         setStatus(event.target.value);
     };
 
-    const handleChangeAssignee = (event) => {
+    const handleChangeAssignee = (event:any) => {
         setAssignee(event.target.value);
     };
 
-    const handleChangePoint = (event) => {
+    const handleChangePoint = (event:any) => {
         setPoint(event.target.value);
     };
 
@@ -95,28 +96,28 @@ const ListItems = (props) => {
 
         if (count > 0) return;
 
-        updateTask(props.task.taskId, name, priority, status, assignee, point);
+        updateTask(task.taskId, name, priority, status, assignee, point);
 
         setNameError(false); setAssigneeError(false); setPointError(false);
         handleUpdateClose();
-        props.setOpen(true);
-        setTimeout(() => { props.setOpen(false) }, 2000);
+        setOpen(true);
+        setTimeout(() => { setOpen(false) }, 2000);
     }
 
     return (
-        <Draggable draggableId={`${props.task.taskId}`} index={props.index}>
-            {(provided, snapshot) => (
+        <Draggable draggableId={`${task.taskId}`} index={index}>
+            {(provided: any, snapshot: any) => (
                 <div
-                    className={`List-items ${snapshot.isDragging ? "drag" : ""} ${(props.task.status !== "Completed" && getDays(props.task.date) >= parseInt(props.task.story_points)) ? "due-task" : ""} ${dark? "List-items-dark" : ""}`}
+                    className={`List-items ${snapshot.isDragging ? "drag" : ""} ${(task.status !== "Completed" && getDays(task.date) >= parseInt(task.story_points)) ? "due-task" : ""} ${dark? "List-items-dark" : ""}`}
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
                     <div className='items-info'>
-                        {`${props.task.name_}`}
+                        {`${task.name_}`}
                         <div style={{fontSize:"small", marginTop:"5px"}}>
-                            <p>{`Assigned by: ${props.task.assignee}`}</p>
-                            <p>{`Priority: ${props.task.priority}`}</p>
+                            <p>{`Assigned by: ${task.assignee}`}</p>
+                            <p>{`Priority: ${task.priority}`}</p>
                         </div>
                     </div>
                     <EditIcon sx={{ marginRight: "15px", color: "rgb(31, 52, 77)" }} onClick={handleUpdateOpen} />
@@ -132,7 +133,7 @@ const ListItems = (props) => {
                                 id="modal-modal-title" variant="h6" component="h2"
                                 sx={{ display: "flex", justifyContent: "center" }
                                 }>
-                                {`Delete ${props.task.name_}?`}
+                                {`Delete ${task.name_}?`}
                             </Typography>
                             <Box sx={{ display: "flex", justifyContent: "space-between", mt: "10px" }}>
                                 <Button variant="contained" href="#contained-buttons" onClick={handleClose}>
@@ -182,7 +183,7 @@ const ListItems = (props) => {
                             </Box>
                             <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", marginTop: '10px', marginBottom: '10px' }}>
                                 <Typography className='Modal-typo' id="modal-modal-description" sx={{ width: "25%" }}> Story Points : </Typography>
-                                <TextField id="outlined-basic" error={pointError} label="Story Points " variant="outlined" size='small' onChange={handleChangePoint} value={point} />
+                                <TextField id="outlined-basic" error={pointError} type="number" label="Story Points " variant="outlined" size='small' onChange={handleChangePoint} value={point} />
                             </Box>
                             <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
                                 <Typography className='Modal-typo' id="modal-modal-description" sx={{ mt: 1, width: "25%" }}> Status : </Typography>

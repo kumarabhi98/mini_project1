@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import '../App.css'
 import ListItems from './ListItems'
 import useTaskStore from '../store/appStore'
@@ -10,7 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Droppable } from 'react-beautiful-dnd';
 
 
-const List = (props) => {
+const List: React.FC<{heading:string}> = ({heading}) => {
   const { tasks, filterTask, filterAssignee,dark } = useTaskStore(
     (state) => ({
       tasks: state.tasks,
@@ -20,22 +20,22 @@ const List = (props) => {
     })
   );
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   //memo
   return (
 
     <div className={`List-body ${dark? 'List-body-dark':''}`}>
-      <div className={`List-body-heading ${dark ? "List-body-heading-dark": ""}`}>{props.heading}</div>
-      <Droppable droppableId={props.heading} >
+      <div className={`List-body-heading ${dark ? "List-body-heading-dark": ""}`}>{heading}</div>
+      <Droppable droppableId={heading} >
         {
-          (provided, snapshot) => (
+          (provided: any, snapshot: any) => (
             <div className='List-body-items'
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
               {
                 tasks.map((task, index) => {
-                  if (props.heading === task.status) {
+                  if (heading === task.status) {
 
                     if (filterAssignee === "" && filterTask === "")
                       return <ListItems key={task.taskId} task={task} setOpen={setOpen} index={index}/>

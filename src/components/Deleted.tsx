@@ -3,7 +3,7 @@ import useTaskStore from '../store/appStore'
 import DeletedItems from './DeletedItems';
 
 
-const Deleted = () => {
+const Deleted :React.FC = () => {
   const deleted = useTaskStore((state) => state.deleted);
 
   return (
